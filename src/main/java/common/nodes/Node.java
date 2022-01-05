@@ -4,7 +4,7 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public interface Node {
-    void accept(NodeVisitor nodeVisitor);
+public interface Node<R> {
+    R accept(NodeVisitor nodeVisitor);
     List<Node> getChildren();
 }

@@ -4,20 +4,21 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class ConditionalNode implements Node {
-    private Node condition;
-    private Node statement1;
-    private Node statement2;
+public class ConditionalNode implements Node<Void> {
+    private final Node<Boolean> condition;
+    private final Node<Void> statement1;
+    private final Node<Void> statement2;
 
-    private ConditionalNode(Node condition, Node statement1, Node statement2) {
+    private ConditionalNode(Node<Boolean> condition, Node<Void> statement1, Node<Void> statement2) {
         this.condition = condition;
         this.statement1 = statement1;
         this.statement2 = statement2;
     }
 
     @Override
-    public void accept(NodeVisitor nodeVisitor) {
+    public Void accept(NodeVisitor nodeVisitor) {
         nodeVisitor.visit(this);
+        return null;
     }
 
     @Override
@@ -32,7 +33,19 @@ public class ConditionalNode implements Node {
                 '}';
     }
 
-    public static ConditionalNode build(Node condition, Node statement1, Node statement2) {
+    public static ConditionalNode build(Node<Boolean> condition, Node<Void> statement1, Node<Void> statement2) {
         return new ConditionalNode(condition, statement1, statement2);
+    }
+
+    public Node<Boolean> getCondition() {
+        return condition;
+    }
+
+    public Node<Void> getStatement1() {
+        return statement1;
+    }
+
+    public Node<Void> getStatement2() {
+        return statement2;
     }
 }

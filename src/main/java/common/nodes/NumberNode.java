@@ -4,16 +4,16 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class NumberNode implements Node {
-    private int number;
+public class NumberNode implements Node<Integer> {
+    private final int number;
 
     private NumberNode(int number) {
         this.number = number;
     }
 
     @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
+    public Integer accept(NodeVisitor nodeVisitor) {
+        return nodeVisitor.visit(this);
     }
 
     @Override
@@ -30,5 +30,9 @@ public class NumberNode implements Node {
 
     public static NumberNode build(int number) {
         return new NumberNode(number);
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

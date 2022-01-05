@@ -4,16 +4,16 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class BooleanNode implements Node {
-    private boolean value;
+public class BooleanNode implements Node<Boolean> {
+    private final boolean booleanValue;
 
-    private BooleanNode(boolean value) {
-        this.value = value;
+    private BooleanNode(boolean booleanValue) {
+        this.booleanValue = booleanValue;
     }
 
     @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
+    public Boolean accept(NodeVisitor nodeVisitor) {
+        return nodeVisitor.visit(this);
     }
 
     @Override
@@ -24,11 +24,15 @@ public class BooleanNode implements Node {
     @Override
     public String toString() {
         return "BooleanNode{" +
-                "value=" + value +
+                "booleanValue=" + booleanValue +
                 '}';
     }
 
-    public static BooleanNode build(boolean value) {
-        return new BooleanNode(value);
+    public static BooleanNode build(boolean booleanValue) {
+        return new BooleanNode(booleanValue);
+    }
+
+    public boolean getBooleanValue() {
+        return booleanValue;
     }
 }

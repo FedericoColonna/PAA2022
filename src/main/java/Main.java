@@ -1,6 +1,8 @@
 
+import common.Context;
 import common.Token;
-import common.nodes.Node;
+import common.nodes.RootNode;
+import common.visitors.EvaluationVisitor;
 import evaluator.Evaluator;
 import lexer.Lexer;
 import parser.Parser;
@@ -22,9 +24,8 @@ public class Main {
         Lexer lexer = new Lexer(program);
         List<Token> tokens = lexer.tokenize();
         Parser parser = new Parser(tokens);
-        Node syntaxTree = parser.parse();
-        traverse(syntaxTree);
-        Evaluator evaluator = new Evaluator(syntaxTree);
+        RootNode syntaxTree = parser.parse();
+        Evaluator evaluator = new Evaluator(syntaxTree, new EvaluationVisitor(new Context()));
         evaluator.evaluate();
     }
 
@@ -52,15 +53,6 @@ public class Main {
             } catch (URISyntaxException e) {
                 throw  new RuntimeException(e);
             }
-        }
-    }
-
-
-    private static void traverse(Node node) {
-        final List<Node> children = node.getChildren();
-        for (Node child : children) {
-            traverse(child);
-            System.out.println(child);
         }
     }
 }

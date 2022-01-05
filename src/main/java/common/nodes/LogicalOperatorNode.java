@@ -4,20 +4,20 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class LogicalOperatorNode implements Node {
-    private Type type;
-    private Node operand1;
-    private Node operand2;
+public class LogicalOperatorNode implements Node<Boolean> {
+    private final Type type;
+    private final Node<Boolean> operand1;
+    private final Node<Boolean> operand2;
 
-    private LogicalOperatorNode(Type type, Node operand1, Node operand2) {
+    private LogicalOperatorNode(Type type, Node<Boolean> operand1, Node<Boolean> operand2) {
         this.type = type;
         this.operand1 = operand1;
         this.operand2 = operand2;
     }
 
     @Override
-    public void accept(NodeVisitor nodeVisitor) {
-        nodeVisitor.visit(this);
+    public Boolean accept(NodeVisitor nodeVisitor) {
+        return nodeVisitor.visit(this);
     }
 
     @Override
@@ -32,17 +32,29 @@ public class LogicalOperatorNode implements Node {
                 '}';
     }
 
+    public Type getType() {
+        return type;
+    }
+
     public enum Type {
         AND,
         OR,
         NOT
     }
 
-    public static LogicalOperatorNode build(Type type, Node operand1, Node operand2) {
+    public static LogicalOperatorNode build(Type type, Node<Boolean> operand1, Node<Boolean> operand2) {
         return new LogicalOperatorNode(type, operand1, operand2);
     }
 
-    public static LogicalOperatorNode build(Type type, Node operand) {
+    public static LogicalOperatorNode build(Type type, Node<Boolean> operand) {
         return new LogicalOperatorNode(type, operand, null);
+    }
+
+    public Node<Boolean> getOperand1() {
+        return operand1;
+    }
+
+    public Node<Boolean> getOperand2() {
+        return operand2;
     }
 }

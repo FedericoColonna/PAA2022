@@ -4,15 +4,15 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class VariableNode implements Node<Integer> {
+public class InputVariableNode implements Node<String> {
     private final String variableId;
 
-    private VariableNode(String variableId) {
+    private InputVariableNode(String variableId) {
         this.variableId = variableId;
     }
 
     @Override
-    public Integer accept(NodeVisitor nodeVisitor) {
+    public String accept(NodeVisitor nodeVisitor) {
         return nodeVisitor.visit(this);
     }
 
@@ -28,8 +28,8 @@ public class VariableNode implements Node<Integer> {
                 '}';
     }
 
-    public static VariableNode build(String variableId) {
-        return new VariableNode(variableId);
+    public static InputVariableNode build(String variableId) {
+        return new InputVariableNode(variableId);
     }
 
     public String getVariableId() {

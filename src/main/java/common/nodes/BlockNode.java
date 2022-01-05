@@ -4,16 +4,17 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class BlockNode implements Node {
-    private List<Node> statements;
+public class BlockNode implements Node<Void> {
+    private final List<Node> statements;
 
     private BlockNode(List<Node> statements) {
         this.statements = statements;
     }
 
     @Override
-    public void accept(NodeVisitor nodeVisitor) {
+    public Void accept(NodeVisitor nodeVisitor) {
         nodeVisitor.visit(this);
+        return null;
     }
 
     @Override

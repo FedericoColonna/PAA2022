@@ -1,18 +1,18 @@
 package evaluator;
 
-import common.Context;
-import common.nodes.Node;
+import common.nodes.RootNode;
+import common.visitors.EvaluationVisitor;
 
 public class Evaluator {
-    private final Node syntaxTree;
-    private final Context context;
+    private final RootNode syntaxTree;
+    private final EvaluationVisitor evaluationVisitor;
 
-    public Evaluator(Node sintaxTree) {
-        this.syntaxTree = sintaxTree;
-        context = new Context();
+    public Evaluator(RootNode syntaxTree, EvaluationVisitor evaluationVisitor) {
+        this.syntaxTree = syntaxTree;
+        this.evaluationVisitor = evaluationVisitor;
     }
 
-    public Object evaluate(Object...input) {
-        return null;
+    public void evaluate() {
+        evaluationVisitor.visit(syntaxTree);
     }
 }
