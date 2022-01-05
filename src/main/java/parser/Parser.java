@@ -143,7 +143,9 @@ public class Parser {
     }
 
     private Node<Void> parseIf() {
-        return null;
+        System.out.println("Parsing IF...");
+        checkAndIgnoreCurrentToken(TokenType.IF);
+        return ConditionalNode.build(parseBoolExpr(), parseStatementBlock(), parseStatementBlock());
     }
 
     private Node<Void> parseWhile() {
