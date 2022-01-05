@@ -1,13 +1,15 @@
 package evaluator;
 
-import common.SyntaxTreeNode;
+import common.Context;
 import common.nodes.Node;
 
 public class Evaluator {
-    private final Node sintaxTreeNode;
+    private final Node syntaxTree;
+    private final Context context;
 
-    public Evaluator(Node sintaxTreeNode) {
-        this.sintaxTreeNode = sintaxTreeNode;
+    public Evaluator(Node sintaxTree) {
+        this.syntaxTree = sintaxTree;
+        context = new Context();
     }
 
     public Object evaluate(Object...input) {

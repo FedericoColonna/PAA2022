@@ -1,5 +1,4 @@
 
-import common.SyntaxTreeNode;
 import common.Token;
 import common.nodes.Node;
 import evaluator.Evaluator;
