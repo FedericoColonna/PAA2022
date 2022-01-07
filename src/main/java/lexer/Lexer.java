@@ -28,7 +28,7 @@ public class Lexer {
         while (hasNext()) {
             Token token = next();
             tokens.add(token);
-            System.out.println(token);
+            //System.out.println(token);
         }
         tokens.add(Token.forType(TokenType.EOI));
         return tokens;

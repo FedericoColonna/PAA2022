@@ -19,7 +19,7 @@ public class Main {
             throw new IllegalArgumentException("Missing input file");
         }
         String program = readString(args[0]);
-        System.out.println(program);
+        //System.out.println(program);
 
         Lexer lexer = new Lexer(program);
         List<Token> tokens = lexer.tokenize();

@@ -37,7 +37,7 @@ public class Parser {
     }
 
     private Node<Void> parseStatementList() {
-        System.out.println("Parsing statement block..");
+        //System.out.println("Parsing statement block..");
         checkAndIgnoreCurrentToken(TokenType.BLOCK);
         List<Node<Void>> statements = new ArrayList<>();
         while (look(TokenType.LEFT_BRACKET)) {
@@ -48,7 +48,7 @@ public class Parser {
     }
 
     private Node<Void> parseStatement() {
-        System.out.println("Parsing statement...");
+        //System.out.println("Parsing statement...");
         checkAndIgnoreCurrentToken(TokenType.LEFT_BRACKET);
         Node<Void> node;
         switch (currentToken.type()) {
@@ -76,13 +76,13 @@ public class Parser {
 
 
     private Node<Void> parseSet() {
-        System.out.println("Parsing SET...");
+        //System.out.println("Parsing SET...");
         checkAndIgnoreCurrentToken(TokenType.SET);
         return SetNode.build(parseInputVariableId(), parseNumExp());
     }
 
     private Node<String> parseInputVariableId() {
-        System.out.println("Parsing input VARIABLE_ID...");
+        //System.out.println("Parsing input VARIABLE_ID...");
         check(TokenType.VARIABLE_ID);
         String variableId = currentToken.variableId();
         checkAndIgnoreCurrentToken(TokenType.VARIABLE_ID);
@@ -90,7 +90,7 @@ public class Parser {
     }
 
     private Node<Integer> parseVariableId() {
-        System.out.println("Parsing VARIABLE_ID...");
+        //System.out.println("Parsing VARIABLE_ID...");
         check(TokenType.VARIABLE_ID);
         String variableId = currentToken.variableId();
         checkAndIgnoreCurrentToken(TokenType.VARIABLE_ID);
@@ -98,7 +98,7 @@ public class Parser {
     }
 
     private Node parseNumExp() {
-        System.out.println("Parsing num expr...");
+        //System.out.println("Parsing num expr...");
         if (look(TokenType.LEFT_BRACKET)) {
             checkAndIgnoreCurrentToken(TokenType.LEFT_BRACKET);
             Node<Integer> operatorNode;
@@ -123,7 +123,7 @@ public class Parser {
     }
 
     private Node<Integer> parseNumber() {
-        System.out.println("Parsing NUMBER...");
+        //System.out.println("Parsing NUMBER...");
         check(TokenType.NUMBER);
         int number = currentToken.number();
         checkAndIgnoreCurrentToken(TokenType.NUMBER);
@@ -131,31 +131,31 @@ public class Parser {
     }
 
     private Node<Void> parsePrint() {
-        System.out.println("Parsing PRINT...");
+        //System.out.println("Parsing PRINT...");
         checkAndIgnoreCurrentToken(TokenType.PRINT);
         return PrintNode.build(parseNumExp());
     }
 
     private Node<Void> parseInput() {
-        System.out.println("Parsing INPUT...");
+        //System.out.println("Parsing INPUT...");
         checkAndIgnoreCurrentToken(TokenType.INPUT);
         return InputNode.build(parseInputVariableId());
     }
 
     private Node<Void> parseIf() {
-        System.out.println("Parsing IF...");
+        //System.out.println("Parsing IF...");
         checkAndIgnoreCurrentToken(TokenType.IF);
         return ConditionalNode.build(parseBoolExpr(), parseStatementBlock(), parseStatementBlock());
     }
 
     private Node<Void> parseWhile() {
-        System.out.println("Parsing WHILE...");
+        //System.out.println("Parsing WHILE...");
         checkAndIgnoreCurrentToken(TokenType.WHILE);
         return WhileNode.build(parseBoolExpr(), parseStatementBlock());
     }
 
     private Node<Boolean> parseBoolExpr() {
-        System.out.println("Parsing bool expr...");
+        //System.out.println("Parsing bool expr...");
         if (look(TokenType.LEFT_BRACKET)) {
             checkAndIgnoreCurrentToken(TokenType.LEFT_BRACKET);
             Node<Boolean> logicalOperatorNode;
