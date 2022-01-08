@@ -234,7 +234,7 @@ class MainTest {
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expected);
     }
 
-    @Test
+    //@Test
     public void itPassesSimpleInput(){
         String data = "15\n3\n";
         InputStream stdin = System.in;
