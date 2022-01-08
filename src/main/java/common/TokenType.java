@@ -1,5 +1,7 @@
 package common;
 
+import java.util.Locale;
+
 public enum TokenType {
     // Keywords
     BLOCK,
@@ -21,14 +23,24 @@ public enum TokenType {
     MUL,
     DIV,
 
-    LEFT_BRACKET,
-    RIGHT_BRACKET,
+    LEFT_PARENTHESIS,
+    RIGHT_PARENTHESIS,
 
     NUMBER,
-    VARIABLE_ID,
+    VARIABLE,
     EOI;
 
     public static TokenType fromString(String input) {
         return TokenType.valueOf(input);
+    }
+
+    public static String prettier(TokenType type) {
+        if (type == RIGHT_PARENTHESIS) {
+            return ")";
+        } else if (type == LEFT_PARENTHESIS) {
+            return "(";
+        }
+        //return type.toString().toLowerCase(Locale.ROOT).replaceAll("_", " ");
+        return type.toString().replaceAll("_", " ");
     }
 }

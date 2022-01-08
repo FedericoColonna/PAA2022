@@ -12,7 +12,7 @@ public class Lexer {
     private static final Pattern LEFT_BRACKET_PATTERN = Pattern.compile("^([(])", Pattern.CASE_INSENSITIVE);
     private static final Pattern RIGHT_BRACKET_PATTERN = Pattern.compile("^\\)", Pattern.CASE_INSENSITIVE);
     private static final Pattern WORD_PATTERN = Pattern.compile("^([a-zA-Z]+)", Pattern.CASE_INSENSITIVE);
-    private static final Pattern NUMBER_PATTERN = Pattern.compile("^(\\d+)", Pattern.CASE_INSENSITIVE);
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("^(-?\\d+)", Pattern.CASE_INSENSITIVE);
     private static final Pattern SPACE_PATTERN = Pattern.compile("^(\\s+)", Pattern.CASE_INSENSITIVE);
 
     private final String program;
@@ -51,13 +51,13 @@ public class Lexer {
         Matcher leftBracketMatcher = LEFT_BRACKET_PATTERN.matcher(subProgram);
         if (leftBracketMatcher.find()) {
             index += leftBracketMatcher.end();
-            return Token.forType(TokenType.LEFT_BRACKET);
+            return Token.forType(TokenType.LEFT_PARENTHESIS);
         }
 
         Matcher rightBracketMatcher = RIGHT_BRACKET_PATTERN.matcher(subProgram);
         if (rightBracketMatcher.find()) {
             index += rightBracketMatcher.end();
-            return Token.forType(TokenType.RIGHT_BRACKET);
+            return Token.forType(TokenType.RIGHT_PARENTHESIS);
         }
 
         Matcher wordMatcher = WORD_PATTERN.matcher(subProgram);
@@ -72,7 +72,9 @@ public class Lexer {
             return Token.forNumber(Integer.parseInt(numberMatcher.group()));
         }
 
-        throw new RuntimeException("The program provided contains an unexpected character");
+        throw new RuntimeException(
+                String.format("(ERROR in tokenizer: stray character '%s')", program.charAt(index))
+        );
     }
 
     private Token token(String value) {

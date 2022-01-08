@@ -23,15 +23,20 @@ public class EvaluationVisitor implements NodeVisitor {
 
     @Override
     public int visit(OperatorNode toVisit) {
+        int operand1 = toVisit.getOperand1().accept(this);
+        int operand2 = toVisit.getOperand2().accept(this);
         switch (toVisit.getType()) {
             case ADD:
-                return toVisit.getOperand1().accept(this) + toVisit.getOperand2().accept(this);
+                return operand1 + operand2;
             case SUB:
-                return toVisit.getOperand1().accept(this) - toVisit.getOperand2().accept(this);
+                return operand1 - operand2;
             case MUL:
-                return toVisit.getOperand1().accept(this) * toVisit.getOperand2().accept(this);
+                return operand1 * operand2;
             case DIV:
-                return toVisit.getOperand1().accept(this) / toVisit.getOperand2().accept(this);
+                if (operand2 == 0) {
+                    throw new RuntimeException("(ERROR in evaluator: Division by zero)");
+                }
+                return operand1 / operand2;
             default:
                 throw new RuntimeException("Unknown operator.");
         }
@@ -105,6 +110,7 @@ public class EvaluationVisitor implements NodeVisitor {
 
     @Override
     public void visit(InputNode toVisit) {
+        System.out.print("> ");
         int value = scanner.nextInt();
         context.setVariable(toVisit.getInputVariable().accept(this), value);
     }
@@ -116,7 +122,11 @@ public class EvaluationVisitor implements NodeVisitor {
 
     @Override
     public Integer visit(VariableNode toVisit) {
-        return context.getVariable(toVisit.getVariableId());
+        String variableId = toVisit.getVariableId();
+        if (!context.containVariable(variableId)) {
+            throw new RuntimeException("(ERROR in evaluator: Undefined variable b)");
+        }
+        return context.getVariable(variableId);
     }
 
     @Override

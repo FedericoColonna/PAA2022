@@ -6,7 +6,7 @@ public class Token {
     private final Integer number;
 
     public static Token forVariableId(String variableId) {
-        return new Token(TokenType.VARIABLE_ID, variableId, null);
+        return new Token(TokenType.VARIABLE, variableId, null);
     }
 
     public static Token forNumber(int number) {
@@ -28,7 +28,7 @@ public class Token {
     }
 
     public String variableId() {
-        if (type() != TokenType.VARIABLE_ID) {
+        if (type() != TokenType.VARIABLE) {
             throw new IllegalStateException("This token is not a VARIABLE_ID type.");
         }
         return variableId;

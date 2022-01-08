@@ -17,4 +17,8 @@ public class Context {
     public int getVariable(String id) {
         return symbolTable.get(id);
     }
+
+    public boolean containVariable(String id) {
+        return symbolTable.containsKey(id);
+    }
 }

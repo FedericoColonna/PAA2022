@@ -18,18 +18,27 @@ public class Main {
         if (args.length == 0) {
             throw new IllegalArgumentException("Missing input file");
         }
-        String program = readString(args[0]);
-        //System.out.println(program);
 
-        Lexer lexer = new Lexer(program);
-        List<Token> tokens = lexer.tokenize();
-        Parser parser = new Parser(tokens);
-        RootNode syntaxTree = parser.parse();
-        Evaluator evaluator = new Evaluator(syntaxTree, new EvaluationVisitor(new Context()));
-        evaluator.evaluate();
+        process(args[0]);
     }
 
-    private static String readString(String filename) {
+    static void process(String path) {
+        try {
+            String program = readString(path);
+            //System.out.println(program);
+
+            Lexer lexer = new Lexer(program);
+            List<Token> tokens = lexer.tokenize();
+            Parser parser = new Parser(tokens);
+            RootNode syntaxTree = parser.parse();
+            Evaluator evaluator = new Evaluator(syntaxTree, new EvaluationVisitor(new Context()));
+            evaluator.evaluate();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    static String readString(String filename) {
         File file = readFileFromResource(filename);
         StringBuilder retval = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
