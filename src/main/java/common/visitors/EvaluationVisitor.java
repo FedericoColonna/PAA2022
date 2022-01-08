@@ -59,18 +59,23 @@ public class EvaluationVisitor implements NodeVisitor {
 
     @Override
     public boolean visit(LogicalOperatorNode toVisit) {
-        Node<Boolean> operand1 = toVisit.getOperand1();
+        final boolean operand1 = toVisit.getOperand1().accept(this);
         switch (toVisit.getType()) {
             case AND: {
-                Node<Boolean> operand2 = toVisit.getOperand2();
-                return operand1.accept(this) && operand2.accept(this);
+                if (operand1) {
+                    return operand1 && toVisit.getOperand1().accept(this);
+                }
+                return false;
+
             }
             case OR: {
-                Node<Boolean> operand2 = toVisit.getOperand2();
-                return operand1.accept(this) || operand2.accept(this);
+                if (operand1) {
+                    return true;
+                }
+                return operand1 || toVisit.getOperand2().accept(this);
             }
             case NOT:
-                return !operand1.accept(this);
+                return !operand1;
             default:
                 throw new RuntimeException("Unknown logical operator.");
         }
