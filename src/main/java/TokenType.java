@@ -1,7 +1,3 @@
-package common;
-
-import java.util.Locale;
-
 public enum TokenType {
     // Keywords
     BLOCK,

@@ -1,5 +1,3 @@
-package common;
-
 public class Token {
     private final TokenType type;
     private final String variableId;

@@ -1,7 +1,3 @@
-package common.visitors;
-
-import common.nodes.*;
-
 public interface NodeVisitor {
     void visit(RootNode toVisit);
     long visit(OperatorNode toVisit);
