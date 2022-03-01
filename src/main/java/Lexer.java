@@ -1,7 +1,3 @@
-package lexer;
-
-import common.Token;
-import common.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,3 @@
-package common.nodes;
-
-import common.visitors.NodeVisitor;
-
 import java.util.List;
 
 public class OperatorNode implements Node<Long> {

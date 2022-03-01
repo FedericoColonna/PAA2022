@@ -1,8 +1,3 @@
-package common.visitors;
-
-import common.Context;
-import common.nodes.*;
-
 import java.util.List;
 import java.util.Scanner;
 

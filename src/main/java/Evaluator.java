@@ -1,7 +1,3 @@
-package evaluator;
-
-import common.nodes.RootNode;
-import common.visitors.EvaluationVisitor;
 
 public class Evaluator {
     private final RootNode syntaxTree;
