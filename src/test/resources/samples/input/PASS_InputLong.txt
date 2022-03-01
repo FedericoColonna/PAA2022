@@ -1,0 +1,5 @@
+(BLOCK
+    (INPUT var)
+    (PRINT var)
+)
+	        

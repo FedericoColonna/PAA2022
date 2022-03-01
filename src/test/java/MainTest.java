@@ -261,4 +261,22 @@ class MainTest {
         String expected = Main.readString("samples/output/PASS_SimpleStatement.out");
         assertThat(byteArrayOutputStream.toString()).isEqualTo(expected);
     }
+
+    @Test
+    public void itPassesInputLong(){
+        //max value for int 2147483647
+        //String data = "2147483648\n";
+        //max value for long
+        String data = "9223372036854775807\n";
+        InputStream stdin = System.in;
+        try {
+            System.setIn(new ByteArrayInputStream(data.getBytes()));
+            Main.process("samples/input/PASS_InputLong.txt");
+            String expected = Main.readString("samples/output/PASS_InputLong.out");
+            System.out.println(byteArrayOutputStream.toString());
+            //assertThat(byteArrayOutputStream.toString()).isEqualTo(expected);
+        } finally {
+            System.setIn(stdin);
+        }
+    }
 }
