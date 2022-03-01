@@ -4,7 +4,7 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class VariableNode implements Node<Integer> {
+public class VariableNode implements Node<Long> {
     private final String variableId;
 
     private VariableNode(String variableId) {
@@ -12,7 +12,7 @@ public class VariableNode implements Node<Integer> {
     }
 
     @Override
-    public Integer accept(NodeVisitor nodeVisitor) {
+    public Long accept(NodeVisitor nodeVisitor) {
         return nodeVisitor.visit(this);
     }
 

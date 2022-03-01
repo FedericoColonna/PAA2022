@@ -69,7 +69,7 @@ public class Lexer {
         Matcher numberMatcher = NUMBER_PATTERN.matcher(subProgram);
         if (numberMatcher.find()) {
             index +=  numberMatcher.end();
-            return Token.forNumber(Integer.parseInt(numberMatcher.group()));
+            return Token.forNumber(Long.parseLong(numberMatcher.group()));
         }
 
         throw new RuntimeException(

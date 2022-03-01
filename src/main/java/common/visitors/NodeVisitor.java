@@ -4,7 +4,7 @@ import common.nodes.*;
 
 public interface NodeVisitor {
     void visit(RootNode toVisit);
-    int visit(OperatorNode toVisit);
+    long visit(OperatorNode toVisit);
     void visit(WhileNode toVisit);
     void visit(SetNode toVisit);
     boolean visit(LogicalOperatorNode toVisit);
@@ -13,8 +13,8 @@ public interface NodeVisitor {
     boolean visit(RelationalOperatorNode toVisit);
     void visit(InputNode toVisit);
     void visit(PrintNode toVisit);
-    Integer visit(VariableNode toVisit);
+    long visit(VariableNode toVisit);
     String visit(InputVariableNode toVisit);
-    int visit(NumberNode toVisit);
+    long visit(NumberNode toVisit);
     boolean visit(BooleanNode toVisit);
 }

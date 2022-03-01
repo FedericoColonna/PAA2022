@@ -6,10 +6,10 @@ import java.util.List;
 
 public class RelationalOperatorNode implements Node<Boolean> {
     private final Type type;
-    private final Node<Integer> operand1;
-    private final Node<Integer> operand2;
+    private final Node<Long> operand1;
+    private final Node<Long> operand2;
 
-    private RelationalOperatorNode(Type type, Node<Integer> operand1, Node<Integer> operand2) {
+    private RelationalOperatorNode(Type type, Node<Long> operand1, Node<Long> operand2) {
         this.type = type;
         this.operand1 = operand1;
         this.operand2 = operand2;
@@ -36,11 +36,11 @@ public class RelationalOperatorNode implements Node<Boolean> {
         return type;
     }
 
-    public Node<Integer> getOperand1() {
+    public Node<Long> getOperand1() {
         return operand1;
     }
 
-    public Node<Integer> getOperand2() {
+    public Node<Long> getOperand2() {
         return operand2;
     }
 
@@ -50,7 +50,7 @@ public class RelationalOperatorNode implements Node<Boolean> {
         EQ
     }
 
-    public static RelationalOperatorNode build(Type type, Node<Integer> operand1, Node<Integer> operand2) {
+    public static RelationalOperatorNode build(Type type, Node<Long> operand1, Node<Long> operand2) {
         return new RelationalOperatorNode(type, operand1, operand2);
     }
 }

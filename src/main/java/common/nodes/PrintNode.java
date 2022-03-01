@@ -5,9 +5,9 @@ import common.visitors.NodeVisitor;
 import java.util.List;
 
 public class PrintNode implements Node<Void> {
-    private final Node<Integer> valueToPrint;
+    private final Node<Long> valueToPrint;
 
-    private PrintNode(Node<Integer> valueToPrint) {
+    private PrintNode(Node<Long> valueToPrint) {
         this.valueToPrint = valueToPrint;
     }
 
@@ -27,11 +27,11 @@ public class PrintNode implements Node<Void> {
         return "PrintNode{ }";
     }
 
-    public static PrintNode build(Node<Integer> valueToPrint) {
+    public static PrintNode build(Node<Long> valueToPrint) {
         return new PrintNode(valueToPrint);
     }
 
-    public Node<Integer> getValueToPrint() {
+    public Node<Long> getValueToPrint() {
         return valueToPrint;
     }
 }

@@ -3,13 +3,13 @@ package common;
 public class Token {
     private final TokenType type;
     private final String variableId;
-    private final Integer number;
+    private final Long number;
 
     public static Token forVariableId(String variableId) {
         return new Token(TokenType.VARIABLE, variableId, null);
     }
 
-    public static Token forNumber(int number) {
+    public static Token forNumber(long number) {
         return new Token(TokenType.NUMBER, null, number);
     }
 
@@ -17,7 +17,7 @@ public class Token {
         return new Token(type, null, null);
     }
 
-    private Token(TokenType type, String variableId, Integer number) {
+    private Token(TokenType type, String variableId, Long number) {
         this.type = type;
         this.variableId = variableId;
         this.number = number;
@@ -34,7 +34,7 @@ public class Token {
         return variableId;
     }
 
-    public int number() {
+    public long number() {
         if (type() != TokenType.NUMBER) {
             throw new IllegalStateException("This token is not a NUMBER type.");
         }

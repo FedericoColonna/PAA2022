@@ -6,9 +6,9 @@ import java.util.List;
 
 public class SetNode implements Node<Void> {
     private final Node<String> variable;
-    private final Node<Integer> expression;
+    private final Node<Long> expression;
 
-    private SetNode(Node<String> variable, Node<Integer> expression) {
+    private SetNode(Node<String> variable, Node<Long> expression) {
         this.variable = variable;
         this.expression = expression;
     }
@@ -29,7 +29,7 @@ public class SetNode implements Node<Void> {
         return "SetNode{ }";
     }
 
-    public static SetNode build(Node<String> condition, Node<Integer> statement) {
+    public static SetNode build(Node<String> condition, Node<Long> statement) {
         return new SetNode(condition, statement);
     }
 
@@ -37,7 +37,7 @@ public class SetNode implements Node<Void> {
         return variable;
     }
 
-    public Node<Integer> getExpression() {
+    public Node<Long> getExpression() {
         return expression;
     }
 }

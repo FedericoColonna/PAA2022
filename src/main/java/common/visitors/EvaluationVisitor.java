@@ -22,9 +22,9 @@ public class EvaluationVisitor implements NodeVisitor {
     }
 
     @Override
-    public int visit(OperatorNode toVisit) {
-        int operand1 = toVisit.getOperand1().accept(this);
-        int operand2 = toVisit.getOperand2().accept(this);
+    public long visit(OperatorNode toVisit) {
+        long operand1 = toVisit.getOperand1().accept(this);
+        long operand2 = toVisit.getOperand2().accept(this);
         switch (toVisit.getType()) {
             case ADD:
                 return operand1 + operand2;
@@ -100,8 +100,8 @@ public class EvaluationVisitor implements NodeVisitor {
 
     @Override
     public boolean visit(RelationalOperatorNode toVisit) {
-        Node<Integer> operand1 = toVisit.getOperand1();
-        Node<Integer> operand2 = toVisit.getOperand2();
+        Node<Long> operand1 = toVisit.getOperand1();
+        Node<Long> operand2 = toVisit.getOperand2();
         switch (toVisit.getType()) {
             case LT:
                 return operand1.accept(this) < operand2.accept(this);
@@ -116,7 +116,7 @@ public class EvaluationVisitor implements NodeVisitor {
     @Override
     public void visit(InputNode toVisit) {
         System.out.print("> ");
-        int value = scanner.nextInt();
+        long value = scanner.nextLong();
         context.setVariable(toVisit.getInputVariable().accept(this), value);
     }
 
@@ -126,7 +126,7 @@ public class EvaluationVisitor implements NodeVisitor {
     }
 
     @Override
-    public Integer visit(VariableNode toVisit) {
+    public long visit(VariableNode toVisit) {
         String variableId = toVisit.getVariableId();
         if (!context.containVariable(variableId)) {
             throw new RuntimeException("(ERROR in evaluator: Undefined variable b)");
@@ -140,7 +140,7 @@ public class EvaluationVisitor implements NodeVisitor {
     }
 
     @Override
-    public int visit(NumberNode toVisit) {
+    public long visit(NumberNode toVisit) {
         return toVisit.getNumber();
     }
 

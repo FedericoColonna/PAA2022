@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 public class Context {
 
-    private final HashMap<String, Integer> symbolTable;
+    private final HashMap<String, Long> symbolTable;
 
     public Context() {
         symbolTable = new HashMap<>();
     }
 
-    public void setVariable(String id, int value) {
+    public void setVariable(String id, long value) {
         symbolTable.put(id, value);
     }
 
-    public int getVariable(String id) {
+    public long getVariable(String id) {
         return symbolTable.get(id);
     }
 

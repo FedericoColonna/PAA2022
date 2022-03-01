@@ -100,7 +100,7 @@ public class Parser {
         return InputVariableNode.build(variableId);
     }
 
-    private Node<Integer> parseVariableId() {
+    private Node<Long> parseVariableId() {
         //System.out.println("Parsing VARIABLE_ID...");
         check(TokenType.VARIABLE, String.format("(ERROR in parser: Expected a VARIABLE, got: %s)", currentToken.type()));
         String variableId = currentToken.variableId();
@@ -112,7 +112,7 @@ public class Parser {
         //System.out.println("Parsing num expr...");
         if (look(TokenType.LEFT_PARENTHESIS)) {
             checkAndIgnoreCurrentToken(TokenType.LEFT_PARENTHESIS, String.format(MISSING_LEFT_PARENTHESIS_AT_TOKEN_TEMPLATE, TokenType.prettier(currentToken.type())));
-            Node<Integer> operatorNode;
+            Node<Long> operatorNode;
             if (look(TokenType.ADD) || look(TokenType.SUB) || look(TokenType.MUL) || look(TokenType.DIV)) {
                 String operator = currentToken.type().toString();
                 ignoreCurrentToken();
@@ -133,10 +133,10 @@ public class Parser {
         }
     }
 
-    private Node<Integer> parseNumber() {
+    private Node<Long> parseNumber() {
         //System.out.println("Parsing NUMBER...");
         check(TokenType.NUMBER, String.format("(ERROR in parser: Expected a NUMBER, got: %s)", currentToken.type()));
-        int number = currentToken.number();
+        long number = currentToken.number();
         checkAndIgnoreCurrentToken(TokenType.NUMBER, String.format("(ERROR in parser: Missing NUMBER at token: %s)", TokenType.prettier(currentToken.type())));
         return NumberNode.build(number);
     }

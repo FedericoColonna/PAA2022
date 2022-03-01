@@ -4,15 +4,15 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class NumberNode implements Node<Integer> {
-    private final int number;
+public class NumberNode implements Node<Long> {
+    private final long number;
 
-    private NumberNode(int number) {
+    private NumberNode(long number) {
         this.number = number;
     }
 
     @Override
-    public Integer accept(NodeVisitor nodeVisitor) {
+    public Long accept(NodeVisitor nodeVisitor) {
         return nodeVisitor.visit(this);
     }
 
@@ -28,11 +28,11 @@ public class NumberNode implements Node<Integer> {
                 '}';
     }
 
-    public static NumberNode build(int number) {
+    public static NumberNode build(long number) {
         return new NumberNode(number);
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 }

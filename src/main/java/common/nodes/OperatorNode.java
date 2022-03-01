@@ -4,19 +4,19 @@ import common.visitors.NodeVisitor;
 
 import java.util.List;
 
-public class OperatorNode implements Node<Integer> {
+public class OperatorNode implements Node<Long> {
     private final Type type;
-    private final Node<Integer> operand1;
-    private final Node<Integer> operand2;
+    private final Node<Long> operand1;
+    private final Node<Long> operand2;
 
-    private OperatorNode(Type type, Node<Integer> operand1, Node<Integer> operand2) {
+    private OperatorNode(Type type, Node<Long> operand1, Node<Long> operand2) {
         this.type = type;
         this.operand1 = operand1;
         this.operand2 = operand2;
     }
 
     @Override
-    public Integer accept(NodeVisitor nodeVisitor) {
+    public Long accept(NodeVisitor nodeVisitor) {
         return nodeVisitor.visit(this);
     }
 
@@ -36,11 +36,11 @@ public class OperatorNode implements Node<Integer> {
         return type;
     }
 
-    public Node<Integer> getOperand1() {
+    public Node<Long> getOperand1() {
         return operand1;
     }
 
-    public Node<Integer> getOperand2() {
+    public Node<Long> getOperand2() {
         return operand2;
     }
 
@@ -51,7 +51,7 @@ public class OperatorNode implements Node<Integer> {
         DIV
     }
 
-    public static OperatorNode build(Type type, Node<Integer> operand1, Node<Integer> operand2) {
+    public static OperatorNode build(Type type, Node<Long> operand1, Node<Long> operand2) {
         return new OperatorNode(type, operand1, operand2);
     }
 }
